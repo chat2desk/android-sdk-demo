@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Chat2DeskSDK_Demo</string>
+    <string name="send_message">Send message</string>
+    <string name="document_icon">Document</string>
+    <string name="waiting_operator">Waiting for an operator</string>
+    <string name="operator_typing">Operator typing…</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="format_date">dd MMM HH:mm</string>
+    <string name="format_current_day">HH:mm</string>
+    <string name="select_media_attachment">Photo or video</string>
+    <string name="select_file_attachment">File</string>
+    <string name="flush_all_data">Flush all data</string>
+    <string name="fetch_messages">Fetch messages</string>
+</resources>
