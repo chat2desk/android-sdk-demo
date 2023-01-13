@@ -15,7 +15,6 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        mavenLocal()
     }
     // ./gradlew dependencyUpdates
     // Report: build/dependencyUpdates/report.txt

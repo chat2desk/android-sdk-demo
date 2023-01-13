@@ -20,6 +20,7 @@ import androidx.compose.ui.platform.LocalContext
 import com.chat2desk.demo.chat2desk_sdk.utils.AttachmentMeta
 import com.chat2desk.demo.chat2desk_sdk.utils.getFileMetaData
 import com.chat2desk.chat2desk_sdk.core.Chat2Desk
+import com.chat2desk.chat2desk_sdk.core.datasource.services.State
 import com.chat2desk.chat2desk_sdk.core.domain.entities.Message
 import kotlinx.coroutines.launch
 
@@ -29,6 +30,8 @@ fun Chat(chat2desk: Chat2Desk) {
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
     val messages = chat2desk.messages.collectAsState(initial = listOf())
+
+    val state by chat2desk.connectionStatus.collectAsState()
 
     fun resendMessage(message: Message) = coroutineScope.launch {
         chat2desk.resendMessage(message)
@@ -54,7 +57,11 @@ fun Chat(chat2desk: Chat2Desk) {
 
     LaunchedEffect(Unit) {
         chat2desk.start()
-        chat2desk.syncMessages()
+    }
+    LaunchedEffect(state) {
+        if (state == State.CONNECTED) {
+            chat2desk.syncMessages()
+        }
     }
     ModalBottomSheetLayout(
         sheetState = attachmentSheetState,

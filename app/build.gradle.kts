@@ -15,7 +15,7 @@ android {
     compileSdk = (findProperty("android.compileSdk") as String).toInt()
 
     defaultConfig {
-        applicationId = "com.chat2desk.sdk.demo"
+        applicationId = "com.chat2desk.sdk.demo.chat2desk_sdk"
         minSdk = (findProperty("android.minSdk") as String).toInt()
         targetSdk = (findProperty("android.targetSdk") as String).toInt()
         versionCode = 1

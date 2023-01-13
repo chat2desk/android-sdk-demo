@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Chat2DeskSDK_Demo</string>
+    <string name="app_name">Chat2Desk SDK Demo</string>
     <string name="send_message">Send message</string>
     <string name="document_icon">Document</string>
     <string name="waiting_operator">Waiting for an operator</string>
