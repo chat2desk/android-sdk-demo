@@ -43,6 +43,7 @@ fun MessageInput(
     val coroutineScope = rememberCoroutineScope()
 
     var text by remember { mutableStateOf("") }
+    var sending by remember { mutableStateOf(false) }
 
     attachment?.let {
         AttachmentPreview(
@@ -67,8 +68,9 @@ fun MessageInput(
             ),
             trailingIcon = {
                 IconButton(
-                    enabled = text.isNotEmpty() || attachment != null,
+                    enabled = text.isNotEmpty() || attachment != null || !sending,
                     onClick = {
+                        sending = true
                         val job = coroutineScope.launch {
                             attachment?.let {
                                 chat2desk.sendMessage(
@@ -80,6 +82,7 @@ fun MessageInput(
                         job.invokeOnCompletion {
                             text = ""
                             clearAttachment()
+                            sending = false
                         }
                     }) {
                     Icon(
