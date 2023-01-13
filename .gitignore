@@ -15,3 +15,5 @@
 local.properties
 
 **/apikey.properties
+*.keystore
+app/release

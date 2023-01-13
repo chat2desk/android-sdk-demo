@@ -1,3 +1,4 @@
+import com.android.build.gradle.internal.scope.ProjectInfo.Companion.getBaseName
 import java.io.FileInputStream
 import java.util.Properties
 
@@ -14,11 +15,20 @@ android {
     namespace = "com.chat2desk.demo.chat2desk_sdk"
     compileSdk = (findProperty("android.compileSdk") as String).toInt()
 
+    signingConfigs {
+        create("release") {
+            keyAlias = "c2d_demo"
+            keyPassword = apikeyProperties["ALIAS_PASS"] as String
+            storeFile = file("c2d_demo.keystore")
+            storePassword = apikeyProperties["KEYSTORE_PASS"] as String
+        }
+    }
+
     defaultConfig {
-        applicationId = "com.chat2desk.sdk.demo.chat2desk_sdk"
+        applicationId = "com.chat2desk.demo.chat2desk_sdk"
         minSdk = (findProperty("android.minSdk") as String).toInt()
         targetSdk = (findProperty("android.targetSdk") as String).toInt()
-        versionCode = 1
+        versionCode = 2
         versionName = "1.0"
 
         buildConfigField("String", "WIDGET_TOKEN", apikeyProperties["WIDGET_TOKEN"] as String)
@@ -30,6 +40,9 @@ android {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("release")
+            isDebuggable = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
     buildFeatures {
