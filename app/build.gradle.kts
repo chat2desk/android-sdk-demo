@@ -1,19 +1,17 @@
-import com.android.build.gradle.internal.scope.ProjectInfo.Companion.getBaseName
-import java.io.FileInputStream
 import java.util.Properties
 
 plugins {
-    id("com.android.application")
-    kotlin("android")
+    id(Plugins.androidApplication)
+    kotlin(Plugins.android)
 }
 
 val apikeyPropertiesFile = rootProject.file("./app/apikey.properties")
 val apikeyProperties = Properties()
-apikeyProperties.load(FileInputStream(apikeyPropertiesFile))
+apikeyProperties.load(apikeyPropertiesFile.inputStream())
 
 android {
     namespace = "com.chat2desk.demo.chat2desk_sdk"
-    compileSdk = (findProperty("android.compileSdk") as String).toInt()
+    compileSdk = Versions.Android.compileSdkVersion
 
     signingConfigs {
         create("release") {
@@ -26,8 +24,8 @@ android {
 
     defaultConfig {
         applicationId = "com.chat2desk.demo.chat2desk_sdk"
-        minSdk = (findProperty("android.minSdk") as String).toInt()
-        targetSdk = (findProperty("android.targetSdk") as String).toInt()
+        minSdk = Versions.Android.minSdk
+        targetSdk = Versions.Android.targetSdk
         versionCode = 2
         versionName = "1.0"
 
@@ -41,7 +39,6 @@ android {
         getByName("release") {
             isMinifyEnabled = false
             signingConfig = signingConfigs.getByName("release")
-            isDebuggable = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
@@ -49,36 +46,40 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.androidx.compose.compiler.get()
+        kotlinCompilerExtensionVersion = Versions.androidxCompose
     }
     packagingOptions {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     //Compose
-    implementation(libs.androidx.compose.ui)
-    implementation(libs.androidx.compose.ui.tooling)
-    implementation(libs.androidx.compose.ui.tooling.preview)
-    implementation(libs.androidx.compose.foundation)
-    implementation(libs.androidx.compose.material)
-    implementation(libs.androidx.compose.material.icon.extended)
-    implementation(libs.androidx.compose.coil)
+    implementation(Dependencies.androidxComposeUi)
+    implementation(Dependencies.androidxComposeUiTooling)
+    implementation(Dependencies.androidxComposeUiToolingPreview)
+    implementation(Dependencies.androidxComposeFoundation)
+    implementation(Dependencies.androidxComposeMaterial)
+    implementation(Dependencies.androidxComposeMaterialIconExtended)
+    implementation(Dependencies.androidxComposeCoil)
 
     //Compose Utils
-    implementation(libs.activity.ktx)
-    implementation(libs.activity.compose)
+    implementation(Dependencies.activityKtx)
+    implementation(Dependencies.activityCompose)
     //Coroutines
-    implementation(libs.kotlinx.coroutines.core)
-    implementation(libs.kotlinx.coroutines.android)
+    implementation(Dependencies.kotlinxCoroutinesCore)
+    implementation(Dependencies.kotlinxCoroutinesAndroid)
     //DI
-    implementation(libs.koin.core)
-    implementation(libs.koin.android)
+    implementation(Dependencies.koinCore)
+    implementation(Dependencies.koinAndroid)
 
-    implementation(libs.kotlinx.datetime)
+    implementation(Dependencies.kotlinxDatetime)
 
-    implementation(libs.chat2desk.sdk)
+    implementation(Dependencies.chat2deskSdk)
 }

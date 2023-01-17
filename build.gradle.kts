@@ -1,5 +1,3 @@
-import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
-
 buildscript {
     repositories {
         gradlePluginPortal()
@@ -7,7 +5,8 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath(libs.bundles.plugins)
+        classpath(Plugins.pluginAndroid)
+        classpath(Plugins.pluginKotlin)
     }
 }
 
@@ -15,26 +14,17 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        mavenLocal()
+        maven {
+            url = uri("https://maven.pkg.github.com/chat2desk/kotlin-sdk")
+            credentials {
+                username = project.findProperty("gprUser") as String
+                password = project.findProperty("gprKey") as String
+            }
+        }
     }
-    // ./gradlew dependencyUpdates
-    // Report: build/dependencyUpdates/report.txt
-    apply(plugin = "com.github.ben-manes.versions")
 }
 
 tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)
-}
-
-//https://github.com/ben-manes/gradle-versions-plugin#rejectversionsif-and-componentselection
-fun isNonStable(version: String): Boolean {
-    val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.toUpperCase().contains(it) }
-    val regex = "^[0-9,.v-]+(-r)?$".toRegex()
-    val isStable = stableKeyword || regex.matches(version)
-    return isStable.not()
-}
-
-tasks.withType<DependencyUpdatesTask> {
-    rejectVersionIf {
-        isNonStable(candidate.version) && !isNonStable(currentVersion)
-    }
 }

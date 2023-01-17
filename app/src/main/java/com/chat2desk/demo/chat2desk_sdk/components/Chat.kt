@@ -17,11 +17,11 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import com.chat2desk.demo.chat2desk_sdk.utils.AttachmentMeta
-import com.chat2desk.demo.chat2desk_sdk.utils.getFileMetaData
 import com.chat2desk.chat2desk_sdk.core.Chat2Desk
 import com.chat2desk.chat2desk_sdk.core.datasource.services.State
 import com.chat2desk.chat2desk_sdk.core.domain.entities.Message
+import com.chat2desk.demo.chat2desk_sdk.utils.AttachmentMeta
+import com.chat2desk.demo.chat2desk_sdk.utils.getFileMetaData
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -60,6 +60,11 @@ fun Chat(chat2desk: Chat2Desk) {
     }
     LaunchedEffect(state) {
         if (state == State.CONNECTED) {
+            chat2desk.sendClientParams(
+                "Chat2Desk SDK Demo",
+                "Test Phone",
+                mapOf(1 to "Field 1", 5 to "Field 5")
+            )
             chat2desk.syncMessages()
         }
     }

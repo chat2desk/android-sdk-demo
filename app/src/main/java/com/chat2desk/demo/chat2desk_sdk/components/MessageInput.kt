@@ -68,7 +68,7 @@ fun MessageInput(
             ),
             trailingIcon = {
                 IconButton(
-                    enabled = text.isNotEmpty() || attachment != null || !sending,
+                    enabled = (text.isNotEmpty() || attachment != null) && !sending,
                     onClick = {
                         sending = true
                         val job = coroutineScope.launch {
