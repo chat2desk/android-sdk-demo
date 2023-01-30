@@ -22,7 +22,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.chat2desk.demo.chat2desk_sdk.R
 import com.chat2desk.chat2desk_sdk.core.Chat2Desk
-import com.chat2desk.chat2desk_sdk.core.datasource.services.State
+import com.chat2desk.chat2desk_sdk.core.datasource.services.ConnectionState
 import kotlinx.coroutines.launch
 
 @Composable
@@ -46,7 +46,7 @@ fun ConnectionStatus(chat2Desk: Chat2Desk) {
     ) {
         Text("Connection status: ${connectionStatus.value.toString()}")
         Spacer(modifier = Modifier.width(8.dp))
-        if (connectionStatus.value == State.CONNECTED) {
+        if (connectionStatus.value == ConnectionState.CONNECTED) {
             IconButton(onClick = ::stop) {
                 Icon(
                     Icons.Outlined.Cancel,
@@ -55,7 +55,7 @@ fun ConnectionStatus(chat2Desk: Chat2Desk) {
                 )
             }
         }
-        if (connectionStatus.value == State.CLOSED) {
+        if (connectionStatus.value == ConnectionState.CLOSED) {
             IconButton(onClick = ::start) {
                 Icon(
                     Icons.Outlined.PlayCircle,

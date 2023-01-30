@@ -18,7 +18,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import com.chat2desk.chat2desk_sdk.core.Chat2Desk
-import com.chat2desk.chat2desk_sdk.core.datasource.services.State
+import com.chat2desk.chat2desk_sdk.core.datasource.services.ConnectionState
 import com.chat2desk.chat2desk_sdk.core.domain.entities.Message
 import com.chat2desk.demo.chat2desk_sdk.utils.AttachmentMeta
 import com.chat2desk.demo.chat2desk_sdk.utils.getFileMetaData
@@ -59,7 +59,7 @@ fun Chat(chat2desk: Chat2Desk) {
         chat2desk.start()
     }
     LaunchedEffect(state) {
-        if (state == State.CONNECTED) {
+        if (state == ConnectionState.CONNECTED) {
             chat2desk.sendClientParams(
                 "Chat2Desk SDK Demo",
                 "Test Phone",

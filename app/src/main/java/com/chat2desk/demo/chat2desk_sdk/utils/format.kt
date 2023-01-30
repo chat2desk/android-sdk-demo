@@ -26,7 +26,10 @@ fun formatBytes(bytes: Int, decimals: Int = 2): String {
     return "%.${dm}f ${sizes[i]}".format(bytes / k.pow(i))
 }
 
-fun messageDate(context: Context, date: Instant): String {
+fun messageDate(context: Context, date: Instant?): String {
+    if (date == null) {
+        return ""
+    }
     val currentDate = Clock.System.todayIn(TimeZone.currentSystemDefault())
     val dateLocalTime = date.toLocalDateTime(TimeZone.currentSystemDefault()).date
 
