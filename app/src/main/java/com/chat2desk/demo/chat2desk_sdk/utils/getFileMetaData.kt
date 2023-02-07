@@ -5,7 +5,7 @@ import android.database.Cursor
 import android.net.Uri
 import android.provider.OpenableColumns
 import android.util.Log
-import com.chat2desk.chat2desk_sdk.core.AttachmentMeta as C2DAttachmentMeta
+import com.chat2desk.chat2desk_sdk.AttachedFile
 
 fun getFileMetaData(context: Context, uri: Uri): AttachmentMeta {
     val contentResolver = context.contentResolver
@@ -40,7 +40,7 @@ data class AttachmentMeta(
 ) {
 }
 
-fun AttachmentMeta.toC2DAttachment(context: Context): C2DAttachmentMeta = C2DAttachmentMeta.fromUri(
+fun AttachmentMeta.toC2DAttachment(context: Context): AttachedFile = AttachedFile.fromUri(
     context,
     uri = this@toC2DAttachment.contentUri,
     originalName = this@toC2DAttachment.originalName,

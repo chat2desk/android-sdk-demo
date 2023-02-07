@@ -28,11 +28,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.chat2desk.demo.chat2desk_sdk.R
-import com.chat2desk.chat2desk_sdk.core.Chat2Desk
+import com.chat2desk.chat2desk_sdk.Chat2Desk
+import com.chat2desk.chat2desk_sdk.IChat2Desk
 import kotlinx.coroutines.launch
 
 @Composable
-fun AppBar(chat2Desk: Chat2Desk) {
+fun AppBar(chat2Desk: IChat2Desk) {
     val operator = chat2Desk.operator.collectAsState()
     val coroutineScope = rememberCoroutineScope()
 
@@ -57,7 +58,7 @@ fun AppBar(chat2Desk: Chat2Desk) {
                         }
                         DropdownMenuItem(onClick = {
                             coroutineScope.launch {
-                                chat2Desk.syncMessages()
+                                chat2Desk.fetchMessages()
                                 expanded = false
                             }
                         }) {

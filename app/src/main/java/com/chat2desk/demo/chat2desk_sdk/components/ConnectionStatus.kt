@@ -21,12 +21,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.chat2desk.demo.chat2desk_sdk.R
-import com.chat2desk.chat2desk_sdk.core.Chat2Desk
-import com.chat2desk.chat2desk_sdk.core.datasource.services.ConnectionState
+import com.chat2desk.chat2desk_sdk.Chat2Desk
+import com.chat2desk.chat2desk_sdk.IChat2Desk
+import com.chat2desk.chat2desk_sdk.datasource.services.ConnectionState
 import kotlinx.coroutines.launch
 
 @Composable
-fun ConnectionStatus(chat2Desk: Chat2Desk) {
+fun ConnectionStatus(chat2Desk: IChat2Desk) {
     val coroutineScope = rememberCoroutineScope()
     val connectionStatus = chat2Desk.connectionStatus.collectAsState()
     fun stop() = coroutineScope.launch {

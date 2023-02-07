@@ -36,8 +36,8 @@ import coil.request.ImageRequest
 import com.chat2desk.demo.chat2desk_sdk.R
 import com.chat2desk.demo.chat2desk_sdk.utils.formatBytes
 import com.chat2desk.demo.chat2desk_sdk.utils.statusIcon
-import com.chat2desk.chat2desk_sdk.core.domain.entities.Attachment
-import com.chat2desk.chat2desk_sdk.core.domain.entities.DeliveryStatus
+import com.chat2desk.chat2desk_sdk.domain.entities.Attachment
+import com.chat2desk.chat2desk_sdk.domain.entities.DeliveryStatus
 
 
 @Composable

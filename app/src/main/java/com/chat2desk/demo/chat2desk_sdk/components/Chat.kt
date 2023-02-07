@@ -17,16 +17,17 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import com.chat2desk.chat2desk_sdk.core.Chat2Desk
-import com.chat2desk.chat2desk_sdk.core.datasource.services.ConnectionState
-import com.chat2desk.chat2desk_sdk.core.domain.entities.Message
+import com.chat2desk.chat2desk_sdk.Chat2Desk
+import com.chat2desk.chat2desk_sdk.IChat2Desk
+import com.chat2desk.chat2desk_sdk.datasource.services.ConnectionState
+import com.chat2desk.chat2desk_sdk.domain.entities.Message
 import com.chat2desk.demo.chat2desk_sdk.utils.AttachmentMeta
 import com.chat2desk.demo.chat2desk_sdk.utils.getFileMetaData
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun Chat(chat2desk: Chat2Desk) {
+fun Chat(chat2desk: IChat2Desk) {
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
     val messages = chat2desk.messages.collectAsState(initial = listOf())
@@ -65,7 +66,7 @@ fun Chat(chat2desk: Chat2Desk) {
                 "Test Phone",
                 mapOf(1 to "Field 1", 5 to "Field 5")
             )
-            chat2desk.syncMessages()
+            chat2desk.fetchMessages()
         }
     }
     ModalBottomSheetLayout(
@@ -77,7 +78,7 @@ fun Chat(chat2desk: Chat2Desk) {
     ) {
         Column {
             MessageList(Modifier.weight(1f), messages.value, ::resendMessage) {
-                chat2desk.syncMessages()
+                chat2desk.fetchMessages()
             }
 
             MessageInput(chat2desk, attachmentSheetState, attachment, ::onClearAttachment)

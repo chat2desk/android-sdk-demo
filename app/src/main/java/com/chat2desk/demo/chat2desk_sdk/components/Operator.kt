@@ -29,7 +29,7 @@ import coil.compose.AsyncImagePainter
 import coil.compose.SubcomposeAsyncImage
 import coil.compose.SubcomposeAsyncImageContent
 import com.chat2desk.demo.chat2desk_sdk.R
-import com.chat2desk.chat2desk_sdk.core.domain.entities.Operator
+import com.chat2desk.chat2desk_sdk.domain.entities.Operator
 
 @Composable
 fun Operator(operator: Operator?, modifier: Modifier = Modifier) {

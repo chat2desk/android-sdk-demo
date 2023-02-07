@@ -28,13 +28,14 @@ import androidx.compose.ui.unit.dp
 import com.chat2desk.demo.chat2desk_sdk.R
 import com.chat2desk.demo.chat2desk_sdk.utils.AttachmentMeta
 import com.chat2desk.demo.chat2desk_sdk.utils.toC2DAttachment
-import com.chat2desk.chat2desk_sdk.core.Chat2Desk
+import com.chat2desk.chat2desk_sdk.Chat2Desk
+import com.chat2desk.chat2desk_sdk.IChat2Desk
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun MessageInput(
-    chat2desk: Chat2Desk,
+    chat2desk: IChat2Desk,
     attachmentSheetState: ModalBottomSheetState,
     attachment: AttachmentMeta?,
     clearAttachment: () -> Unit

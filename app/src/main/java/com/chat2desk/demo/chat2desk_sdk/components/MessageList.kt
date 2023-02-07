@@ -26,7 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
-import com.chat2desk.chat2desk_sdk.core.domain.entities.Message
+import com.chat2desk.chat2desk_sdk.domain.entities.Message
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
