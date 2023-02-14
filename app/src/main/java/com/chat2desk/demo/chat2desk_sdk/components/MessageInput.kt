@@ -25,11 +25,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.chat2desk.chat2desk_sdk.IChat2Desk
 import com.chat2desk.demo.chat2desk_sdk.R
 import com.chat2desk.demo.chat2desk_sdk.utils.AttachmentMeta
 import com.chat2desk.demo.chat2desk_sdk.utils.toC2DAttachment
-import com.chat2desk.chat2desk_sdk.Chat2Desk
-import com.chat2desk.chat2desk_sdk.IChat2Desk
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -53,13 +52,19 @@ fun MessageInput(
         )
     }
 
-    Row(modifier = Modifier.padding(10.dp)) {
+    Row(modifier = Modifier.padding(horizontal = 10.dp)) {
         TextField(
             modifier = Modifier
                 .weight(1f),
             value = text,
             onValueChange = { text = it },
-            placeholder = { Text(stringResource(id = R.string.send_message)) },
+            placeholder = {
+                Text(
+                    stringResource(id = R.string.send_message),
+                    style = MaterialTheme.typography.body1,
+                    color = textSecondary
+                )
+            },
             colors = TextFieldDefaults.textFieldColors(
                 backgroundColor = Color.Transparent,
                 focusedIndicatorColor = Color.Transparent,

@@ -17,7 +17,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import com.chat2desk.chat2desk_sdk.Chat2Desk
 import com.chat2desk.chat2desk_sdk.IChat2Desk
 import com.chat2desk.chat2desk_sdk.datasource.services.ConnectionState
 import com.chat2desk.chat2desk_sdk.domain.entities.Message

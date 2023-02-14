@@ -14,14 +14,7 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        mavenLocal()
-        maven {
-            url = uri("https://maven.pkg.github.com/chat2desk/kotlin-sdk")
-            credentials {
-                username = project.findProperty("gprUser") as String
-                password = project.findProperty("gprKey") as String
-            }
-        }
+//        mavenLocal()
     }
 }
 

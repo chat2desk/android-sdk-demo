@@ -37,8 +37,7 @@ data class AttachmentMeta(
     val originalName: String = "",
     val fileSize: Int = 0,
     val mimeType: String,
-) {
-}
+)
 
 fun AttachmentMeta.toC2DAttachment(context: Context): AttachedFile = AttachedFile.fromUri(
     context,

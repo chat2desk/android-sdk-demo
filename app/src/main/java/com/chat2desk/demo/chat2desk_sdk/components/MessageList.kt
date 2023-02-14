@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.pullrefresh.PullRefreshIndicator
 import androidx.compose.material.pullrefresh.pullRefresh
@@ -84,7 +85,10 @@ fun MessageList(
                         contentAlignment = Alignment.Center, modifier = modifier
                             .fillMaxWidth()
                     ) {
-                        Text(text = "Empty list")
+                        Text(
+                            text = "Empty list",
+                            style = MaterialTheme.typography.subtitle1
+                        )
                     }
                 }
             }

@@ -21,7 +21,7 @@ val outMessageBackground = Color(0xFFFFFFFF)
 val inMessageBackground = Color(0xFFE0E9EF)
 val HeaderBackground = Color(0xFFD2E0EB)
 private val textPrimary = Color(0xFF3F3F3F)
-private val textSecondary = Color(0xFF888888)
+val textSecondary = Color(0xFF888888)
 private val textSubtitle = Color(0xFFB4B4B4)
 private val Colors = lightColors(
     primary = Primary,
@@ -40,6 +40,15 @@ val typography = Typography(
         fontWeight = FontWeight.Medium,
         fontSize = 14.sp
     ),
+    h6 = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.Bold,
+        fontSize = 18.sp
+    ),
+    subtitle1 = TextStyle(
+        fontWeight = FontWeight.Normal,
+        fontSize = 14.sp,
+    ),
     subtitle2 = TextStyle(
         color = textSubtitle,
         fontFamily = FontFamily.Default,
@@ -51,7 +60,7 @@ val typography = Typography(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Medium,
         fontSize = 11.sp
-    )
+    ),
 )
 val shapes = Shapes(
     small = RoundedCornerShape(4.dp),

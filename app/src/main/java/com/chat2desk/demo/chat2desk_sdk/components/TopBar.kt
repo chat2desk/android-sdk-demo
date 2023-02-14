@@ -27,9 +27,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.chat2desk.demo.chat2desk_sdk.R
-import com.chat2desk.chat2desk_sdk.Chat2Desk
 import com.chat2desk.chat2desk_sdk.IChat2Desk
+import com.chat2desk.demo.chat2desk_sdk.R
 import kotlinx.coroutines.launch
 
 @Composable
