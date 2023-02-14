@@ -31,7 +31,7 @@ STORAGE_HOST="YOUR_STORAGE_TOKEN_HERE"
 
 ## Usage
 
-###  Call
+###  Message list
 <table>
 <tr>
 <td>Main</td>
