@@ -16,7 +16,7 @@ object Versions {
     const val koin = "3.3.2"
     const val kotlinxDatetime = "0.4.0"
 
-    const val chat2deskSdk = "1.0.0"
+    const val chat2deskSdk = "1.0.1"
 
 }
 
