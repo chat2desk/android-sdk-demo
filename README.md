@@ -1,23 +1,23 @@
 
 # Chat2Desk SDK Demo
 
-This demo demonstrates chat integration using the Chat2Desk Android SDK. The application supports chat operations with Chat2Desk service.
+This application demonstrates chat integration using the Chat2Desk Android SDK, allowing users to perform various chat operations with Chat2Desk service
 
 ## Features
-The application is able to:
-- send message
-- send message with attachment
-- receive an incoming message
-- fetch message history from Chat2Desk
-- send client data to the Chat2Desk
-- receive an operator info
-- save the message history and allows you to add messages when there is no connection, followed by sending
+The application supports the following features:
+- Sending message
+- Sending message with attachment
+- Receiving incoming message
+- Fetching message history from Chat2Desk
+- Sending client data to the Chat2Desk
+- Receiving operator info
+- Saving message history and allowing users to add messages when there is no connection, followed by sending once a connection is re-established
 
 ## Getting started
 
-To get start you'll need the account on Chat2Desk and channel with Online Widget.
+To get started, you'll need an account on Chat2Desk and channel with Online Chat.
 
-1. Get the parameters from widget settings:
+1. Retrieve the parameters from the widget settings:
 - widget token
 - server urls
 2. Create the `apikey.properties` file on `app` folder with next content:
@@ -50,6 +50,4 @@ STORAGE_HOST="YOUR_STORAGE_TOKEN_HERE"
 2. [SDK Reference](https://sdk.chat2desk.com)
 
 ##  Have a question
-
-- contact us via `develop@chat2desk.com`
 - create an issue
