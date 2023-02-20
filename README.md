@@ -15,19 +15,19 @@ The application supports the following features:
 
 ## Getting started
 
-To get started, you'll need an account on Chat2Desk and channel with Online Chat.
+You'll need a Chat2Desk account account and a channel with Online Widget to get started.
 
 1. Retrieve the parameters from the widget settings:
 - widget token
-- server urls
-2. Create the `apikey.properties` file on `app` folder with next content:
+- server URLs
+2. Create `apikey.properties` file on `app` folder with following content:
 ````
 WIDGET_TOKEN="YOUR_WIDGET_TOKEN_HERE"  
 BASE_HOST="YOUR_BASE_HOST_TOKEN_HERE"  
 WS_HOST="YOUR_WS_HOST_TOKEN_HERE"  
 STORAGE_HOST="YOUR_STORAGE_TOKEN_HERE"
 ````
-3. Build and run app.
+3. Build and run the app.
 
 ## Usage
 
@@ -49,5 +49,5 @@ STORAGE_HOST="YOUR_STORAGE_TOKEN_HERE"
 1. [Using Chat2Desk SDK](https://chat2desk.atlassian.net/wiki/external/453247004/ZTdmYjQ3YzQ0MDFkNGU4MjhlOGIzZjlmYjQ1MmViYjE?atlOrigin=eyJpIjoiOTk2ZjdlOTdiNjg3NDY4YTk2YWU0NDg3MGVhNWI5MjIiLCJwIjoiYyJ9)
 2. [SDK Reference](https://sdk.chat2desk.com)
 
-##  Have a question
+## Still have questions?
 - create an issue
