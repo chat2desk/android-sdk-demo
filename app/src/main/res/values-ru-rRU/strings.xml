@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Chat2Desk SDK Demo</string>
+    <string name="send_message">Отправить сообщение</string>
+    <string name="document_icon">Документ</string>
+    <string name="waiting_operator">Ожидание оператора</string>
+    <string name="operator_typing">Оператор печатает…</string>
+    <string name="start">Старт</string>
+    <string name="stop">Стоп</string>
+    <string name="yesterday">Вчера</string>
+    <string name="format_date">dd MMM HH:mm</string>
+    <string name="format_current_day">HH:mm</string>
+    <string name="select_media_attachment">Изображение или видео</string>
+    <string name="select_file_attachment">Файл</string>
+    <string name="flush_all_data">Стереть все данные</string>
+    <string name="fetch_messages">Загрузить сообщения</string>
+    <string name="connection_status">Статус подключения: %1$s</string>
+</resources>
