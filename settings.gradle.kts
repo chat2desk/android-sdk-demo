@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Chat2DeskSDK_Demo"
+rootProject.name = "Android SDK Demo"
 
 include(":app")
