@@ -23,9 +23,10 @@ class App : Application() {
                 authToken = BuildConfig.WIDGET_TOKEN,
                 baseHost = BuildConfig.BASE_HOST,
                 wsHost = BuildConfig.WS_HOST,
-                storageHost = BuildConfig.STORAGE_HOST,
-                withLog = BuildConfig.DEBUG
+                storageHost = BuildConfig.STORAGE_HOST
             )
+            settings.withLog = BuildConfig.DEBUG
+
             Chat2Desk.create(settings, get())
         }
     }
