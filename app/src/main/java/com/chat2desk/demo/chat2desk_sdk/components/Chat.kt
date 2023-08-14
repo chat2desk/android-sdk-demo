@@ -65,7 +65,7 @@ fun Chat(chat2desk: IChat2Desk) {
                 "Test Phone",
                 mapOf(1 to "Field 1", 5 to "Field 5")
             )
-            chat2desk.fetchMessages()
+            chat2desk.fetchNewMessages()
         }
     }
     ModalBottomSheetLayout(

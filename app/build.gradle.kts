@@ -26,8 +26,8 @@ android {
         applicationId = "com.chat2desk.demo.chat2desk_sdk"
         minSdk = Versions.Android.minSdk
         targetSdk = Versions.Android.targetSdk
-        versionCode = 8
-        versionName = "1.0"
+        versionCode = 10
+        versionName = "1.1"
 
         buildConfigField("String", "WIDGET_TOKEN", apikeyProperties["WIDGET_TOKEN"] as String)
         buildConfigField("String", "BASE_HOST", apikeyProperties["BASE_HOST"] as String)
