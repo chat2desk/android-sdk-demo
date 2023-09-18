@@ -1,6 +1,6 @@
 object Versions {
     object Android {
-        const val minSdk = 24
+        const val minSdk = 21
         const val targetSdk = 33
         const val compileSdkVersion = 33
     }
@@ -15,9 +15,9 @@ object Versions {
     const val kotlinxCoroutines = "1.6.4"
     const val koin = "3.3.2"
     const val kotlinxDatetime = "0.4.0"
+    const val desugarJdkLibs = "1.2.2"
 
-    const val chat2deskSdk = "1.1.0"
-
+    const val chat2deskSdk = "1.2.0"
 }
 
 object Plugins {
@@ -44,4 +44,5 @@ object Dependencies {
     const val koinAndroid = "io.insert-koin:koin-android:${Versions.koin}"
     const val kotlinxDatetime = "org.jetbrains.kotlinx:kotlinx-datetime:${Versions.kotlinxDatetime}"
     const val chat2deskSdk = "com.chat2desk:chat2desk_sdk:${Versions.chat2deskSdk}"
+    const val desugarJdkLibs = "com.android.tools:desugar_jdk_libs:${Versions.desugarJdkLibs}"
 }
