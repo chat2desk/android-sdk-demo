@@ -36,7 +36,6 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun AppBar(chat2Desk: IChat2Desk) {
-    val context = LocalContext.current
     val operator = chat2Desk.operator.collectAsState()
     val coroutineScope = rememberCoroutineScope()
 
@@ -53,7 +52,7 @@ fun AppBar(chat2Desk: IChat2Desk) {
                     DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
                         DropdownMenuItem(onClick = {
                             coroutineScope.launch {
-                                Chat2Desk.flushAll(context)
+                                chat2Desk.flushAll()
                                 expanded = false
                             }
                         }) {
