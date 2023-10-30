@@ -26,8 +26,8 @@ android {
         applicationId = "com.chat2desk.demo.chat2desk_sdk"
         minSdk = Versions.Android.minSdk
         targetSdk = Versions.Android.targetSdk
-        versionCode = 10
-        versionName = "1.1"
+        versionCode = 11
+        versionName = "1.3.0"
 
         buildConfigField("String", "WIDGET_TOKEN", apikeyProperties["WIDGET_TOKEN"] as String)
         buildConfigField("String", "BASE_HOST", apikeyProperties["BASE_HOST"] as String)
@@ -44,9 +44,10 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.androidxCompose
+        kotlinCompilerExtensionVersion = Versions.androidxComposeExtension
     }
     packagingOptions {
         resources {
@@ -55,8 +56,11 @@ android {
     }
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = "17"
     }
 }
 

@@ -1,6 +1,7 @@
 package com.chat2desk.demo.chat2desk_sdk.components
 
 import android.net.Uri
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme

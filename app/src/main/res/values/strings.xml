@@ -13,5 +13,6 @@
     <string name="select_file_attachment">File</string>
     <string name="flush_all_data">Flush all data</string>
     <string name="fetch_messages">Fetch messages</string>
+    <string name="read_chat">Read chat</string>
     <string name="connection_status">Connection status: %1$s</string>
 </resources>
