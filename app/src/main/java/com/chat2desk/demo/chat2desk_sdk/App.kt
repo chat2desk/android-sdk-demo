@@ -2,11 +2,11 @@ package com.chat2desk.demo.chat2desk_sdk
 
 import android.app.Application
 import com.chat2desk.chat2desk_sdk.Chat2Desk
+import com.chat2desk.chat2desk_sdk.HttpClient
 import com.chat2desk.chat2desk_sdk.IChat2Desk
+import com.chat2desk.chat2desk_sdk.LogLevel
 import com.chat2desk.chat2desk_sdk.Settings
 import com.chat2desk.chat2desk_sdk.create
-import io.ktor.client.plugins.logging.LogLevel
-import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -32,7 +32,7 @@ class App : Application() {
             settings.logLevel = LogLevel.INFO
 
             // Example of custom socket client
-            settings.socketClient = OkHttpClient()
+            settings.socketClient = HttpClient()
                 .newBuilder()
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS)
