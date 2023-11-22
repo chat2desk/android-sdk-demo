@@ -1,5 +1,6 @@
 package com.chat2desk.demo.chat2desk_sdk.components
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,6 +17,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Replay
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -36,6 +38,9 @@ fun MessageItem(message: Message, onResend: () -> Unit) {
     val horizontalArrangement = if (message.inMessage()) Arrangement.End else Arrangement.Start
     val color = if (message.inMessage()) inMessageBackground else outMessageBackground
 
+    LaunchedEffect(message) {
+        Log.i("Message", message.toString())
+    }
     Row(
         modifier = Modifier
             .fillMaxWidth(),

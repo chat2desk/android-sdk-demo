@@ -13,5 +13,6 @@
     <string name="select_file_attachment">Файл</string>
     <string name="flush_all_data">Стереть все данные</string>
     <string name="fetch_messages">Загрузить сообщения</string>
+    <string name="read_chat">Отметить прочитанным</string>
     <string name="connection_status">Статус подключения: %1$s</string>
 </resources>
