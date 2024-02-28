@@ -38,9 +38,6 @@ fun MessageItem(message: Message, onResend: () -> Unit) {
     val horizontalArrangement = if (message.inMessage()) Arrangement.End else Arrangement.Start
     val color = if (message.inMessage()) inMessageBackground else outMessageBackground
 
-    LaunchedEffect(message) {
-        Log.i("Message", message.toString())
-    }
     Row(
         modifier = Modifier
             .fillMaxWidth(),
