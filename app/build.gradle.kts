@@ -39,7 +39,10 @@ android {
         getByName("release") {
             isMinifyEnabled = false
             signingConfig = signingConfigs.getByName("release")
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     buildFeatures {
@@ -70,7 +73,7 @@ dependencies {
     implementation(Dependencies.androidxComposeUiTooling)
     implementation(Dependencies.androidxComposeUiToolingPreview)
     implementation(Dependencies.androidxComposeFoundation)
-    implementation(Dependencies.androidxComposeMaterial)
+    implementation(Dependencies.androidxComposeMaterial3)
     implementation(Dependencies.androidxComposeMaterialIconExtended)
     implementation(Dependencies.androidxComposeCoil)
 

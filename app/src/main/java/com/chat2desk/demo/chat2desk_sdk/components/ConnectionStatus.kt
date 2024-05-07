@@ -1,15 +1,21 @@
 package com.chat2desk.demo.chat2desk_sdk.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.outlined.Pause
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
@@ -50,7 +56,7 @@ fun ConnectionStatus(chat2Desk: IChat2Desk) {
                 onClick = ::stop,
                 modifier = Modifier
                     .clip(CircleShape)
-                    .background(MaterialTheme.colors.primary)
+                    .background(MaterialTheme.colorScheme.primary)
             ) {
                 Icon(
                     Icons.Outlined.Pause,
@@ -65,7 +71,7 @@ fun ConnectionStatus(chat2Desk: IChat2Desk) {
                 onClick = ::start,
                 modifier = Modifier
                     .clip(CircleShape)
-                    .background(MaterialTheme.colors.primary)
+                    .background(MaterialTheme.colorScheme.primary)
             ) {
                 Icon(
                     Icons.Filled.PlayArrow,

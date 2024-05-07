@@ -1,11 +1,11 @@
 package com.chat2desk.demo.chat2desk_sdk.components
 
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Shapes
-import androidx.compose.material.Surface
-import androidx.compose.material.Typography
-import androidx.compose.material.lightColors
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Shapes
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Typography
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -23,39 +23,40 @@ val HeaderBackground = Color(0xFFD2E0EB)
 private val textPrimary = Color(0xFF3F3F3F)
 val textSecondary = Color(0xFF888888)
 private val textSubtitle = Color(0xFFB4B4B4)
-private val Colors = lightColors(
+
+private val colorScheme = lightColorScheme(
     primary = Primary,
     secondary = Secondary,
     onPrimary = Color.White,
 )
 val typography = Typography(
-    body1 = TextStyle(
+    bodyLarge = TextStyle(
         color = textPrimary,
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp
     ),
-    body2 = TextStyle(
+    bodyMedium = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Medium,
         fontSize = 14.sp
     ),
-    h6 = TextStyle(
+    titleLarge = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Bold,
         fontSize = 18.sp
     ),
-    subtitle1 = TextStyle(
+    titleMedium = TextStyle(
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
     ),
-    subtitle2 = TextStyle(
+    titleSmall = TextStyle(
         color = textSubtitle,
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp
     ),
-    caption = TextStyle(
+    bodySmall = TextStyle(
         color = textSecondary,
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Medium,
@@ -73,7 +74,7 @@ fun AppTheme(
     content: @Composable () -> Unit
 ) {
     MaterialTheme(
-        colors = Colors,
+        colorScheme = colorScheme,
         typography = typography,
         shapes = shapes,
         content = {

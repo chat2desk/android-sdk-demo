@@ -1,6 +1,5 @@
 package com.chat2desk.demo.chat2desk_sdk.components
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -9,15 +8,15 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Replay
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -49,15 +48,19 @@ fun MessageItem(message: Message, onResend: () -> Unit) {
                 Icon(
                     Icons.Outlined.Replay,
                     contentDescription = null,
-                    tint = MaterialTheme.colors.error
+                    tint = MaterialTheme.colorScheme.error
                 )
             }
         }
         Card(
-            elevation = 4.dp,
+            elevation = CardDefaults.cardElevation(
+                defaultElevation = 4.dp
+            ),
             modifier = Modifier
                 .fillMaxWidth(0.75f),
-            backgroundColor = color
+            colors = CardDefaults.cardColors(
+                containerColor = color
+            )
         ) {
             Column(modifier = Modifier.padding(horizontal = 14.dp, vertical = 8.dp)) {
                 if (!message.attachments.isNullOrEmpty()) {
@@ -72,7 +75,7 @@ fun MessageItem(message: Message, onResend: () -> Unit) {
                 }
                 if (!message.text.isNullOrEmpty()) {
                     Text(
-                        style = MaterialTheme.typography.body1,
+                        style = MaterialTheme.typography.bodyLarge,
                         text = message.text!!,
                     )
                     Spacer(modifier = Modifier.height(2.dp))
@@ -83,14 +86,14 @@ fun MessageItem(message: Message, onResend: () -> Unit) {
                     horizontalArrangement = horizontalArrangement
                 ) {
                     Text(
-                        style = MaterialTheme.typography.caption,
+                        style = MaterialTheme.typography.bodySmall,
                         text = messageDate(LocalContext.current, message.date),
                     )
                     Spacer(modifier = Modifier.width(4.dp))
                     Icon(
                         statusIcon(message.status),
                         contentDescription = null,
-                        tint = MaterialTheme.colors.primary
+                        tint = MaterialTheme.colorScheme.primary
                     )
                 }
             }
