@@ -39,7 +39,7 @@ fun ConnectionStatus(chat2Desk: IChat2Desk) {
     }
 
     fun start() = coroutineScope.launch {
-        chat2Desk.start()
+        chat2Desk.start(clientId = "{\"client_id\":\"[chat] bfbd5a059272173c7a16\",\"client_token\":\"31d2e286ee7365c5a902039523b22a85\"}")
     }
 
     Row(

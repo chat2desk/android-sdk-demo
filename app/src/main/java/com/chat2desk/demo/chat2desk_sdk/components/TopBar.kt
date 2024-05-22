@@ -84,7 +84,7 @@ fun AppBar(chat2Desk: IChat2Desk) {
                         })
                         DropdownMenuItem(onClick = {
                             coroutineScope.launch {
-                                chat2Desk.fetchMessages()
+                                chat2Desk.fetchMessages(clear = true)
                                 expanded = false
                             }
                         }, text = {
