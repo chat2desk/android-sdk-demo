@@ -31,7 +31,7 @@ class AppActivity : ComponentActivity() {
                             .asPaddingValues()
                     )
                 ) {
-                    ChatScreen(c2d = c2d)
+                    ChatScreen(c2d = c2d, client = BuildConfig.CLIENT_TOKEN)
                 }
             }
         }

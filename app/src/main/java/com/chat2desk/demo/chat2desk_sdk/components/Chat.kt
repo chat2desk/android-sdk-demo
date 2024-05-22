@@ -30,7 +30,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Chat(chat2desk: IChat2Desk) {
+fun Chat(chat2desk: IChat2Desk, client: String?) {
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
     val messages = chat2desk.messages.collectAsState(initial = listOf())
@@ -54,7 +54,11 @@ fun Chat(chat2desk: IChat2Desk) {
     fun handleAttachmentSelect(uri: Uri?) = coroutineScope.launch {
         uri?.let { attachment = getFileMetaData(context, it) }
 
-        attachmentSheetState.hide()
+        launch { attachmentSheetState.hide() }.invokeOnCompletion {
+            if (!attachmentSheetState.isVisible) {
+                showBottomSheet = false
+            }
+        }
     }
 
     fun onClearAttachment() {
@@ -67,7 +71,7 @@ fun Chat(chat2desk: IChat2Desk) {
 
     LaunchedEffect(Unit) {
         if (state === ConnectionState.CLOSED) {
-            chat2desk.start()
+            chat2desk.start(clientId = client)
         }
     }
     LaunchedEffect(state) {
@@ -82,9 +86,7 @@ fun Chat(chat2desk: IChat2Desk) {
     }
 
     Column {
-        MessageList(Modifier.weight(1f), messages.value, ::resendMessage) { loadMore ->
-            fetchMessages(loadMore)
-        }
+        MessageList(Modifier.weight(1f), messages.value, ::resendMessage, ::fetchMessages)
 
         MessageInput(chat2desk, ::handleOpenAttachment, attachment, ::onClearAttachment)
     }
@@ -92,9 +94,10 @@ fun Chat(chat2desk: IChat2Desk) {
         val bottomPadding = WindowInsets.navigationBars.asPaddingValues()
             .calculateBottomPadding().value.toInt() + 30
         ModalBottomSheet(
-            onDismissRequest = { showBottomSheet = false },
-            sheetState = attachmentSheetState,
-            windowInsets = WindowInsets(0, 0, 0, 0)
+            onDismissRequest = {
+                showBottomSheet = false
+            },
+            sheetState = attachmentSheetState
         ) {
             Box(
                 Modifier

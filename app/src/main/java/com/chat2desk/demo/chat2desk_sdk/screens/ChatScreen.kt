@@ -16,7 +16,7 @@ import com.chat2desk.demo.chat2desk_sdk.components.AppBar
 import com.chat2desk.demo.chat2desk_sdk.components.Chat
 
 @Composable
-fun ChatScreen(c2d: IChat2Desk) {
+fun ChatScreen(c2d: IChat2Desk, client: String?) {
     val snackbarHostState = remember { SnackbarHostState() }
     val error = c2d.error
         .collectAsState(null)
@@ -33,14 +33,14 @@ fun ChatScreen(c2d: IChat2Desk) {
     }
     Scaffold(
         topBar = {
-            AppBar(c2d)
+            AppBar(c2d, client)
         },
         snackbarHost = {
             SnackbarHost(hostState = snackbarHostState)
         }
     ) {
         Column(modifier = Modifier.padding(it)) {
-            Chat(c2d)
+            Chat(c2d, client)
         }
     }
 }

@@ -43,7 +43,7 @@ import com.chat2desk.demo.chat2desk_sdk.R
 import kotlinx.coroutines.launch
 
 @Composable
-fun AppBar(chat2Desk: IChat2Desk) {
+fun AppBar(chat2Desk: IChat2Desk, client: String?) {
     val operator = chat2Desk.operator.collectAsState()
     val coroutineScope = rememberCoroutineScope()
 
@@ -84,7 +84,7 @@ fun AppBar(chat2Desk: IChat2Desk) {
                         })
                         DropdownMenuItem(onClick = {
                             coroutineScope.launch {
-                                chat2Desk.fetchMessages()
+                                chat2Desk.fetchMessages(clear = true)
                                 expanded = false
                             }
                         }, text = {
@@ -102,7 +102,7 @@ fun AppBar(chat2Desk: IChat2Desk) {
                 }
             }
             Spacer(modifier = Modifier.height(10.dp))
-            ConnectionStatus(chat2Desk)
+            ConnectionStatus(chat2Desk, client)
             Spacer(modifier = Modifier.height(10.dp))
             EmbeddedSearchBar(
                 onQueryChange = ::search,

@@ -26,13 +26,26 @@ android {
         applicationId = "com.chat2desk.demo.chat2desk_sdk"
         minSdk = Versions.Android.minSdk
         targetSdk = Versions.Android.targetSdk
-        versionCode = 14
+        versionCode = 15
         versionName = "1.4.0"
 
-        buildConfigField("String", "WIDGET_TOKEN", apikeyProperties["WIDGET_TOKEN"] as String)
-        buildConfigField("String", "BASE_HOST", apikeyProperties["BASE_HOST"] as String)
-        buildConfigField("String", "WS_HOST", apikeyProperties["WS_HOST"] as String)
-        buildConfigField("String", "STORAGE_HOST", apikeyProperties["STORAGE_HOST"] as String)
+        buildConfigField(
+            "String",
+            "WIDGET_TOKEN",
+            apikeyProperties["WIDGET_TOKEN"] as String? ?: "null"
+        )
+        buildConfigField("String", "BASE_HOST", apikeyProperties["BASE_HOST"] as String? ?: "null")
+        buildConfigField("String", "WS_HOST", apikeyProperties["WS_HOST"] as String? ?: "null")
+        buildConfigField(
+            "String",
+            "STORAGE_HOST",
+            apikeyProperties["STORAGE_HOST"] as String? ?: "null"
+        )
+        buildConfigField(
+            "String",
+            "CLIENT_TOKEN",
+            apikeyProperties["CLIENT_TOKEN"] as String? ?: "null"
+        )
     }
 
     buildTypes {

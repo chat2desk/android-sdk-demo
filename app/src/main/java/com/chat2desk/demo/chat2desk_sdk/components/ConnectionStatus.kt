@@ -31,7 +31,7 @@ import com.chat2desk.demo.chat2desk_sdk.R
 import kotlinx.coroutines.launch
 
 @Composable
-fun ConnectionStatus(chat2Desk: IChat2Desk) {
+fun ConnectionStatus(chat2Desk: IChat2Desk, client: String?) {
     val coroutineScope = rememberCoroutineScope()
     val connectionStatus = chat2Desk.connectionStatus.collectAsState()
     fun stop() = coroutineScope.launch {
@@ -39,7 +39,7 @@ fun ConnectionStatus(chat2Desk: IChat2Desk) {
     }
 
     fun start() = coroutineScope.launch {
-        chat2Desk.start()
+        chat2Desk.start(clientId = client)
     }
 
     Row(
