@@ -10,13 +10,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.outlined.Description
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -49,7 +49,7 @@ fun AttachmentPreview(meta: AttachmentMeta, onRemove: () -> Unit) {
                 Icon(
                     Icons.Outlined.Description,
                     contentDescription = stringResource(id = R.string.document_icon),
-                    tint = MaterialTheme.colors.primary
+                    tint = MaterialTheme.colorScheme.primary
                 )
             }
         }
@@ -63,21 +63,21 @@ fun AttachmentPreview(meta: AttachmentMeta, onRemove: () -> Unit) {
         ) {
             Text(
                 text = meta.originalName,
-                color = MaterialTheme.colors.primary,
-                style = MaterialTheme.typography.body2,
+                color = MaterialTheme.colorScheme.primary,
+                style = MaterialTheme.typography.bodyMedium,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
             Text(
                 text = formatBytes(meta.fileSize),
-                style = MaterialTheme.typography.subtitle2
+                style = MaterialTheme.typography.titleSmall
             )
         }
         IconButton(onClick = onRemove) {
             Icon(
                 Icons.Filled.Close,
                 contentDescription = null,
-                tint = MaterialTheme.colors.error
+                tint = MaterialTheme.colorScheme.error
             )
         }
     }

@@ -1,13 +1,15 @@
 package com.chat2desk.demo.chat2desk_sdk.components
 
 import android.net.Uri
-import android.util.Log
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.ModalBottomSheetLayout
-import androidx.compose.material.ModalBottomSheetValue
-import androidx.compose.material.rememberModalBottomSheetState
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -18,6 +20,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
 import com.chat2desk.chat2desk_sdk.IChat2Desk
 import com.chat2desk.chat2desk_sdk.datasource.services.ConnectionState
 import com.chat2desk.chat2desk_sdk.domain.entities.Message
@@ -25,9 +28,9 @@ import com.chat2desk.demo.chat2desk_sdk.utils.AttachmentMeta
 import com.chat2desk.demo.chat2desk_sdk.utils.getFileMetaData
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Chat(chat2desk: IChat2Desk) {
+fun Chat(chat2desk: IChat2Desk, client: String?) {
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
     val messages = chat2desk.messages.collectAsState(initial = listOf())
@@ -38,10 +41,12 @@ fun Chat(chat2desk: IChat2Desk) {
         chat2desk.resendMessage(message)
     }
 
-    val attachmentSheetState = rememberModalBottomSheetState(
-        initialValue = ModalBottomSheetValue.Hidden,
-    )
+    fun fetchMessages(loadMore: Boolean) = coroutineScope.launch {
+        chat2desk.fetchMessages(loadMore)
+    }
 
+    val attachmentSheetState = rememberModalBottomSheetState()
+    var showBottomSheet by remember { mutableStateOf(false) }
     var attachment by remember {
         mutableStateOf<AttachmentMeta?>(null)
     }
@@ -49,15 +54,25 @@ fun Chat(chat2desk: IChat2Desk) {
     fun handleAttachmentSelect(uri: Uri?) = coroutineScope.launch {
         uri?.let { attachment = getFileMetaData(context, it) }
 
-        attachmentSheetState.hide()
+        launch { attachmentSheetState.hide() }.invokeOnCompletion {
+            if (!attachmentSheetState.isVisible) {
+                showBottomSheet = false
+            }
+        }
     }
 
     fun onClearAttachment() {
         attachment = null
     }
 
+    fun handleOpenAttachment() {
+        showBottomSheet = true
+    }
+
     LaunchedEffect(Unit) {
-        chat2desk.start()
+        if (state === ConnectionState.CLOSED) {
+            chat2desk.start(clientId = client)
+        }
     }
     LaunchedEffect(state) {
         if (state == ConnectionState.CONNECTED) {
@@ -69,19 +84,27 @@ fun Chat(chat2desk: IChat2Desk) {
             chat2desk.fetchNewMessages()
         }
     }
-    ModalBottomSheetLayout(
-        sheetState = attachmentSheetState,
-        sheetShape = MaterialTheme.shapes.medium,
-        sheetContent = {
-            AttachmentModal(onSelect = ::handleAttachmentSelect)
-        }
-    ) {
-        Column {
-            MessageList(Modifier.weight(1f), messages.value, ::resendMessage) {
-                chat2desk.fetchMessages()
-            }
 
-            MessageInput(chat2desk, attachmentSheetState, attachment, ::onClearAttachment)
+    Column {
+        MessageList(Modifier.weight(1f), messages.value, ::resendMessage, ::fetchMessages)
+
+        MessageInput(chat2desk, ::handleOpenAttachment, attachment, ::onClearAttachment)
+    }
+    if (showBottomSheet) {
+        val bottomPadding = WindowInsets.navigationBars.asPaddingValues()
+            .calculateBottomPadding().value.toInt() + 30
+        ModalBottomSheet(
+            onDismissRequest = {
+                showBottomSheet = false
+            },
+            sheetState = attachmentSheetState
+        ) {
+            Box(
+                Modifier
+                    .padding(bottom = bottomPadding.dp)
+            ) {
+                AttachmentModal(onSelect = ::handleAttachmentSelect)
+            }
         }
     }
 }
