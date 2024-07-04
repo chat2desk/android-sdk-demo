@@ -29,7 +29,7 @@ class App : Application() {
                 storageHost = BuildConfig.STORAGE_HOST
             )
             settings.withLog = BuildConfig.DEBUG
-            settings.logLevel = LogLevel.INFO
+            settings.logLevel = LogLevel.ALL
 
             // Example of custom socket client
             settings.socketClient = HttpClient()
