@@ -2,18 +2,16 @@ package com.chat2desk.demo.chat2desk_sdk.components
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.ModalBottomSheetState
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.material.icons.outlined.AttachFile
 import androidx.compose.material.icons.outlined.Send
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -31,11 +29,10 @@ import com.chat2desk.demo.chat2desk_sdk.utils.AttachmentMeta
 import com.chat2desk.demo.chat2desk_sdk.utils.toC2DAttachment
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun MessageInput(
     chat2desk: IChat2Desk,
-    attachmentSheetState: ModalBottomSheetState,
+    onOpenAttachment: () -> Unit,
     attachment: AttachmentMeta?,
     clearAttachment: () -> Unit
 ) {
@@ -61,16 +58,20 @@ fun MessageInput(
             placeholder = {
                 Text(
                     stringResource(id = R.string.send_message),
-                    style = MaterialTheme.typography.body1,
+                    style = MaterialTheme.typography.bodyLarge,
                     color = textSecondary
                 )
             },
-            colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color.Transparent,
+
+            colors = TextFieldDefaults.colors(
+                focusedContainerColor = Color.Transparent,
+                unfocusedContainerColor = Color.Transparent,
+                focusedTrailingIconColor = MaterialTheme.colorScheme.primary,
+                unfocusedTrailingIconColor = MaterialTheme.colorScheme.primary,
+                focusedLeadingIconColor = MaterialTheme.colorScheme.primary,
+                unfocusedLeadingIconColor = MaterialTheme.colorScheme.primary,
                 focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-                trailingIconColor = MaterialTheme.colors.primary,
-                leadingIconColor = MaterialTheme.colors.primary,
+                unfocusedIndicatorColor = Color.Transparent
             ),
             trailingIcon = {
                 IconButton(
@@ -100,7 +101,7 @@ fun MessageInput(
             leadingIcon = {
                 IconButton(
                     enabled = attachment == null,
-                    onClick = { coroutineScope.launch { attachmentSheetState.show() } }) {
+                    onClick = { onOpenAttachment() }) {
                     Icon(Icons.Outlined.AttachFile, contentDescription = null)
                 }
             }

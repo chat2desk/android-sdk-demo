@@ -11,11 +11,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -45,7 +45,7 @@ fun Operator(operator: Operator?, modifier: Modifier = Modifier) {
                 .size(48.dp)
                 .clip(CircleShape)
                 .background(Color.White)
-                .border(1.5.dp, MaterialTheme.colors.primary, CircleShape)
+                .border(1.5.dp, MaterialTheme.colorScheme.primary, CircleShape)
         ) {
             val state = painter.state
             if (state is AsyncImagePainter.State.Loading || state is AsyncImagePainter.State.Error) {
@@ -53,7 +53,7 @@ fun Operator(operator: Operator?, modifier: Modifier = Modifier) {
                     Icon(
                         Icons.Filled.Person,
                         contentDescription = null,
-                        tint = MaterialTheme.colors.primary,
+                        tint = MaterialTheme.colorScheme.primary,
                     )
                 }
             } else {
@@ -63,7 +63,7 @@ fun Operator(operator: Operator?, modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.width(8.dp))
         Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.Top) {
             Text(
-                style = MaterialTheme.typography.h6,
+                style = MaterialTheme.typography.titleLarge,
                 text = operator?.name
                     ?: stringResource(id = R.string.waiting_operator),
                 maxLines = 1,
@@ -73,7 +73,7 @@ fun Operator(operator: Operator?, modifier: Modifier = Modifier) {
                 Spacer(modifier = Modifier.height(2.dp))
                 Text(
                     text = stringResource(id = R.string.operator_typing),
-                    style = MaterialTheme.typography.caption
+                    style = MaterialTheme.typography.bodySmall
                 )
             }
         }

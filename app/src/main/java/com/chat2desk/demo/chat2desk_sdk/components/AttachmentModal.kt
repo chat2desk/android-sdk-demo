@@ -7,22 +7,20 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Divider
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Icon
-import androidx.compose.material.ListItem
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.Theaters
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.ListItem
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.chat2desk.demo.chat2desk_sdk.R
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun AttachmentModal(onSelect: (uri: Uri?) -> Unit) {
     val pickMedia =
@@ -40,23 +38,23 @@ fun AttachmentModal(onSelect: (uri: Uri?) -> Unit) {
                     )
                 )
             },
-            text = { Text(stringResource(id = R.string.select_media_attachment)) },
-            icon = {
+            headlineContent = { Text(stringResource(id = R.string.select_media_attachment)) },
+            leadingContent = {
                 Icon(
                     Icons.Filled.Theaters,
                     contentDescription = null,
-                    tint = MaterialTheme.colors.primary
+                    tint = MaterialTheme.colorScheme.primary
                 )
             })
-        Divider()
+        HorizontalDivider()
         ListItem(
             modifier = Modifier.clickable { pickDocument.launch(arrayOf("*/*")) },
-            text = { Text(stringResource(id = R.string.select_file_attachment)) },
-            icon = {
+            headlineContent = { Text(stringResource(id = R.string.select_file_attachment)) },
+            leadingContent = {
                 Icon(
                     Icons.Filled.Description,
                     contentDescription = null,
-                    tint = MaterialTheme.colors.primary
+                    tint = MaterialTheme.colorScheme.primary
                 )
             }
         )

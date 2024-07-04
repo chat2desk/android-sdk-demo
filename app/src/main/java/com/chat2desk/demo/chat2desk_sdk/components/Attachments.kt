@@ -11,13 +11,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Card
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Description
+import androidx.compose.material3.Card
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -58,13 +58,13 @@ fun ImageAttachment(attachment: Attachment) {
             Box(
                 modifier = Modifier
                     .clip(CircleShape)
-                    .background(MaterialTheme.colors.secondary),
+                    .background(MaterialTheme.colorScheme.secondary),
                 contentAlignment = Alignment.Center,
             ) {
                 Icon(
                     statusIcon(attachment.status),
                     contentDescription = null,
-                    tint = if (attachment.status == DeliveryStatus.NOT_DELIVERED) MaterialTheme.colors.error else Color.White,
+                    tint = if (attachment.status == DeliveryStatus.NOT_DELIVERED) MaterialTheme.colorScheme.error else Color.White,
                     modifier = Modifier.padding(4.dp)
                 )
             }
@@ -89,7 +89,7 @@ fun DocumentAttachment(attachment: Attachment) {
                 Icon(
                     if (attachment.status != DeliveryStatus.DELIVERED) statusIcon(attachment.status) else Icons.Outlined.Description,
                     contentDescription = stringResource(id = R.string.document_icon),
-                    tint = if (attachment.status == DeliveryStatus.NOT_DELIVERED) MaterialTheme.colors.error else MaterialTheme.colors.primary
+                    tint = if (attachment.status == DeliveryStatus.NOT_DELIVERED) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary
                 )
             }
         }
@@ -102,14 +102,14 @@ fun DocumentAttachment(attachment: Attachment) {
         ) {
             Text(
                 text = attachment.originalFileName ?: "",
-                color = MaterialTheme.colors.primary,
-                style = MaterialTheme.typography.body2,
+                color = MaterialTheme.colorScheme.primary,
+                style = MaterialTheme.typography.bodyMedium,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
             Text(
                 text = formatBytes(attachment.fileSize),
-                style = MaterialTheme.typography.subtitle2
+                style = MaterialTheme.typography.titleSmall
             )
         }
     }
