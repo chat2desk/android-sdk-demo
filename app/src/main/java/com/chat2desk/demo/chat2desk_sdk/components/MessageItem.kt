@@ -83,18 +83,20 @@ fun MessageItem(message: Message, onResend: () -> Unit) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = horizontalArrangement
+                    horizontalArrangement = Arrangement.End
                 ) {
                     Text(
                         style = MaterialTheme.typography.bodySmall,
                         text = messageDate(LocalContext.current, message.date),
                     )
-                    Spacer(modifier = Modifier.width(4.dp))
-                    Icon(
-                        statusIcon(message.status),
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.primary
-                    )
+                    if (message.type == MessageType.IN ) {
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Icon(
+                            statusIcon(message.status, message.read == ReadStatus.READ),
+                            contentDescription = null,
+                            tint = if (message.status == DeliveryStatus.NOT_DELIVERED) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary
+                        )
+                    }
                 }
             }
         }

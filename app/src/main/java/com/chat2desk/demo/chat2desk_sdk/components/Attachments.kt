@@ -62,7 +62,7 @@ fun ImageAttachment(attachment: Attachment) {
                 contentAlignment = Alignment.Center,
             ) {
                 Icon(
-                    statusIcon(attachment.status),
+                    statusIcon(attachment.status, false),
                     contentDescription = null,
                     tint = if (attachment.status == DeliveryStatus.NOT_DELIVERED) MaterialTheme.colorScheme.error else Color.White,
                     modifier = Modifier.padding(4.dp)
@@ -87,7 +87,7 @@ fun DocumentAttachment(attachment: Attachment) {
                     )
             ) {
                 Icon(
-                    if (attachment.status != DeliveryStatus.DELIVERED) statusIcon(attachment.status) else Icons.Outlined.Description,
+                    if (attachment.status != DeliveryStatus.DELIVERED) statusIcon(attachment.status, false) else Icons.Outlined.Description,
                     contentDescription = stringResource(id = R.string.document_icon),
                     tint = if (attachment.status == DeliveryStatus.NOT_DELIVERED) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary
                 )
