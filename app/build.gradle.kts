@@ -3,6 +3,7 @@ import java.util.Properties
 plugins {
     id(Plugins.androidApplication)
     kotlin(Plugins.android)
+    id("org.jetbrains.kotlin.plugin.compose") version "2.0.0"
 }
 
 val apikeyPropertiesFile = rootProject.file("./app/apikey.properties")
@@ -65,7 +66,7 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = Versions.androidxComposeExtension
     }
-    packagingOptions {
+    packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }

@@ -5,22 +5,22 @@ object Versions {
         const val compileSdkVersion = 34
     }
 
-    const val pluginAndroid = "8.1.0"
-    const val pluginKotlin = "1.9.10"
-    const val androidxCompose = "1.5.4"
-    const val androidxComposeExtension = "1.5.3"
-    const val composeFoundation = "1.2.1"
+    const val pluginAndroid = "8.5.0"
+    const val pluginKotlin = "2.0.21"
+    const val androidxCompose = "1.7.7"
+    const val androidxComposeExtension = "1.7.7"
+    const val composeFoundation = "1.7.7"
 
     const val material = "1.3.1"
     const val material3 = "1.2.1"
     const val coil = "2.2.2"
     const val activityCompose = "1.6.1"
-    const val kotlinxCoroutines = "1.7.3"
+    const val kotlinxCoroutines = "1.9.0"
     const val koin = "3.3.2"
-    const val kotlinxDatetime = "0.4.0"
+    const val kotlinxDatetime = "0.6.1"
     const val desugarJdkLibs = "1.2.2"
 
-    const val chat2deskSdk = "1.5.0"
+    const val chat2deskSdk = "1.5.3"
 }
 
 object Plugins {
