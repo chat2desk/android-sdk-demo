@@ -14,6 +14,7 @@
     <string name="flush_all_data">Стереть все данные</string>
     <string name="fetch_messages">Загрузить сообщения</string>
     <string name="read_chat">Отметить прочитанным</string>
+    <string name="delivery_message">Отметить полученным</string>
     <string name="connection_status">Статус подключения: %1$s</string>
     <string name="search">Поиск сообщений</string>
     <string name="load_more">Загрузить еще</string>

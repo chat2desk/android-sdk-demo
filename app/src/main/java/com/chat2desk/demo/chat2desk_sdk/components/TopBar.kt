@@ -92,6 +92,14 @@ fun AppBar(chat2Desk: IChat2Desk, client: String?) {
                         })
                         DropdownMenuItem(onClick = {
                             coroutineScope.launch {
+                                chat2Desk.delivery()
+                                expanded = false
+                            }
+                        }, text = {
+                            Text(text = stringResource(id = R.string.delivery_message))
+                        })
+                        DropdownMenuItem(onClick = {
+                            coroutineScope.launch {
                                 chat2Desk.read()
                                 expanded = false
                             }

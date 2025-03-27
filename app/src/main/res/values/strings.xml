@@ -14,6 +14,7 @@
     <string name="flush_all_data">Flush all data</string>
     <string name="fetch_messages">Fetch messages</string>
     <string name="read_chat">Read chat</string>
+    <string name="delivery_message">Delivery chat</string>
     <string name="connection_status">Connection status: %1$s</string>
     <string name="search">Search messages</string>
     <string name="load_more">Load more</string>
