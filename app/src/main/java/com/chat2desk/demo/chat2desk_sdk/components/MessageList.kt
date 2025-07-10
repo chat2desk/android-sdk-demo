@@ -37,6 +37,7 @@ fun MessageList(
     messages: List<Message>,
     onResend: (message: Message) -> Unit,
     onFetch: (loadMore: Boolean) -> Unit,
+    onButtonClick: (text: String) -> Unit,
 ) {
     val listState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
@@ -75,7 +76,7 @@ fun MessageList(
             ) { message ->
                 MessageItem(message = message, onResend = {
                     onResend(message)
-                })
+                }, onButtonClick = onButtonClick)
             }
 
             item {
@@ -107,11 +108,8 @@ fun MessageList(
 @Preview(name = "Messages List")
 @Composable
 fun MessageListPreview(@PreviewParameter(MessageListPreviewProvider::class) list: List<Message>) {
-    MessageList(
-        modifier = Modifier,
-        messages = list,
-        onResend = {},
-        onFetch = {})
+    MessageList(modifier = Modifier, messages = list, onResend = {}, onFetch = {},
+        onButtonClick = {})
 }
 
 class MessageListPreviewProvider : PreviewParameterProvider<List<Message>> {

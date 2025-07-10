@@ -2,6 +2,7 @@ package com.chat2desk.demo.chat2desk_sdk.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Replay
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -17,25 +19,37 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
+import com.chat2desk.chat2desk_sdk.IChat2Desk
+import com.chat2desk.chat2desk_sdk.domain.entities.Button
 import com.chat2desk.chat2desk_sdk.domain.entities.DeliveryStatus
 import com.chat2desk.chat2desk_sdk.domain.entities.Message
 import com.chat2desk.chat2desk_sdk.domain.entities.MessageType
 import com.chat2desk.chat2desk_sdk.domain.entities.ReadStatus
 import com.chat2desk.demo.chat2desk_sdk.utils.messageDate
 import com.chat2desk.demo.chat2desk_sdk.utils.statusIcon
+import com.chat2desk.demo.chat2desk_sdk.utils.toC2DAttachment
+import kotlinx.coroutines.launch
 import kotlinx.datetime.Instant
 
 @Composable
-fun MessageItem(message: Message, onResend: () -> Unit) {
+fun MessageItem(message: Message, onResend: () -> Unit, onButtonClick: (text: String) -> Unit) {
     val horizontalArrangement = if (message.inMessage()) Arrangement.End else Arrangement.Start
     val color = if (message.inMessage()) inMessageBackground else outMessageBackground
+    var sending by remember { mutableStateOf(false) }
+    val coroutineScope = rememberCoroutineScope()
 
     Row(
         modifier = Modifier
@@ -98,6 +112,28 @@ fun MessageItem(message: Message, onResend: () -> Unit) {
                         )
                     }
                 }
+
+                message.buttons?.forEach { button ->
+                    Button(
+                        enabled = !sending,
+                        onClick = {
+                            sending = true
+                            val job = coroutineScope.launch {
+                                onButtonClick.invoke(button.payload ?: button.text)
+                            }
+                            job.invokeOnCompletion {
+                                sending = false
+                            }
+                        },
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text(
+                            text = button.text,
+                            style = MaterialTheme.typography.titleSmall,
+                            color = Color.White
+                        )
+                    }
+                }
             }
         }
     }
@@ -137,7 +173,11 @@ class MessagePreviewParameterProvider : PreviewParameterProvider<Message> {
                 read = ReadStatus.UNREAD,
                 status = DeliveryStatus.DELIVERED,
                 type = MessageType.RATING_OUT,
-                text = "Fourth Message"
+                text = "Fourth Message",
+                buttons = sequenceOf(
+                    Button(type = "reply", text = "Menu 1"),
+                    Button(type = "reply", text = "Menu 2"),
+                ).toList()
             ),
             Message(
                 id = "5",
@@ -156,5 +196,5 @@ class MessagePreviewParameterProvider : PreviewParameterProvider<Message> {
 fun MessageItemPreview(
     @PreviewParameter(MessagePreviewParameterProvider::class) message: Message
 ) {
-    MessageItem(message, onResend = {})
+    MessageItem(message, onResend = {}, onButtonClick = {})
 }

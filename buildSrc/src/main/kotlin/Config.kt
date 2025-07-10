@@ -20,7 +20,7 @@ object Versions {
     const val kotlinxDatetime = "0.6.1"
     const val desugarJdkLibs = "1.2.2"
 
-    const val chat2deskSdk = "1.5.4"
+    const val chat2deskSdk = "1.5.5"
 }
 
 object Plugins {

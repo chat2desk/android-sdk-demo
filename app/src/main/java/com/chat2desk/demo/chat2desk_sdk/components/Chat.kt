@@ -41,6 +41,10 @@ fun Chat(chat2desk: IChat2Desk, client: String?) {
         chat2desk.resendMessage(message)
     }
 
+    fun onButtonClick(text: String) = coroutineScope.launch {
+        chat2desk.sendMessage(text)
+    }
+
     fun fetchMessages(loadMore: Boolean) = coroutineScope.launch {
         chat2desk.fetchMessages(loadMore)
     }
@@ -86,7 +90,7 @@ fun Chat(chat2desk: IChat2Desk, client: String?) {
     }
 
     Column {
-        MessageList(Modifier.weight(1f), messages.value, ::resendMessage, ::fetchMessages)
+        MessageList(Modifier.weight(1f), messages.value, ::resendMessage, ::fetchMessages, ::onButtonClick)
 
         MessageInput(chat2desk, ::handleOpenAttachment, attachment, ::onClearAttachment)
     }
