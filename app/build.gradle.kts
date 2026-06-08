@@ -3,7 +3,7 @@ import java.util.Properties
 plugins {
     id(Plugins.androidApplication)
     kotlin(Plugins.android)
-    id("org.jetbrains.kotlin.plugin.compose") version "2.0.0"
+    id("org.jetbrains.kotlin.plugin.compose") version Versions.pluginKotlin
 }
 
 val apikeyPropertiesFile = rootProject.file("./app/apikey.properties")
@@ -62,9 +62,6 @@ android {
     buildFeatures {
         compose = true
         buildConfig = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = Versions.androidxComposeExtension
     }
     packaging {
         resources {

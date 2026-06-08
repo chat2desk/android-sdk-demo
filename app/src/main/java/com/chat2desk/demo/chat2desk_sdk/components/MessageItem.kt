@@ -46,8 +46,8 @@ import kotlinx.datetime.Instant
 
 @Composable
 fun MessageItem(message: Message, onResend: () -> Unit, onButtonClick: (text: String) -> Unit) {
-    val horizontalArrangement = if (message.inMessage()) Arrangement.End else Arrangement.Start
-    val color = if (message.inMessage()) inMessageBackground else outMessageBackground
+    val horizontalArrangement = if (message.inMessage()) Arrangement.End else { if(message.type == MessageType.AUTO) Arrangement.Center else Arrangement.Start }
+    val color = if (message.inMessage()) inMessageBackground else { if(message.type == MessageType.AUTO) Color(0x66e0e9ef) else outMessageBackground }
     var sending by remember { mutableStateOf(false) }
     val coroutineScope = rememberCoroutineScope()
 
@@ -186,7 +186,15 @@ class MessagePreviewParameterProvider : PreviewParameterProvider<Message> {
                 status = DeliveryStatus.DELIVERED,
                 type = MessageType.RATING_OUT,
                 attachments = imageAttachments.plus(documentAttachments).toList()
-            )
+            ),
+            Message(
+                id = "6",
+                date = Instant.fromEpochSeconds(1667999139),
+                read = ReadStatus.READ,
+                status = DeliveryStatus.DELIVERED,
+                type = MessageType.AUTO,
+                text = "System message"
+            ),
         )
 
 }
