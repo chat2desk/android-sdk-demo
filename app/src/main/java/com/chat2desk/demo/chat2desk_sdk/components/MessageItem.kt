@@ -2,7 +2,6 @@ package com.chat2desk.demo.chat2desk_sdk.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -32,7 +31,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
-import com.chat2desk.chat2desk_sdk.IChat2Desk
 import com.chat2desk.chat2desk_sdk.domain.entities.Button
 import com.chat2desk.chat2desk_sdk.domain.entities.DeliveryStatus
 import com.chat2desk.chat2desk_sdk.domain.entities.Message
@@ -40,20 +38,21 @@ import com.chat2desk.chat2desk_sdk.domain.entities.MessageType
 import com.chat2desk.chat2desk_sdk.domain.entities.ReadStatus
 import com.chat2desk.demo.chat2desk_sdk.utils.messageDate
 import com.chat2desk.demo.chat2desk_sdk.utils.statusIcon
-import com.chat2desk.demo.chat2desk_sdk.utils.toC2DAttachment
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Instant
 
 @Composable
 fun MessageItem(message: Message, onResend: () -> Unit, onButtonClick: (text: String) -> Unit) {
-    val horizontalArrangement = if (message.inMessage()) Arrangement.End else { if(message.type == MessageType.AUTO) Arrangement.Center else Arrangement.Start }
-    val color = if (message.inMessage()) inMessageBackground else { if(message.type == MessageType.AUTO) Color(0x66e0e9ef) else outMessageBackground }
+    val isCenter = message.type == MessageType.SYSTEM || message.type == MessageType.COMMENT;
+    val horizontalArrangement = if (message.inMessage()) Arrangement.End else {
+        if(isCenter) Arrangement.Center else Arrangement.Start
+    }
+    val color = if (message.inMessage()) inMessageBackground else { if(isCenter) Color(0x66e0e9ef) else outMessageBackground }
     var sending by remember { mutableStateOf(false) }
     val coroutineScope = rememberCoroutineScope()
 
     Row(
-        modifier = Modifier
-            .fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = horizontalArrangement,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -70,8 +69,7 @@ fun MessageItem(message: Message, onResend: () -> Unit, onButtonClick: (text: St
             elevation = CardDefaults.cardElevation(
                 defaultElevation = 4.dp
             ),
-            modifier = Modifier
-                .fillMaxWidth(0.75f),
+            modifier = Modifier.fillMaxWidth(0.75f),
             colors = CardDefaults.cardColors(
                 containerColor = color
             )
@@ -192,8 +190,16 @@ class MessagePreviewParameterProvider : PreviewParameterProvider<Message> {
                 date = Instant.fromEpochSeconds(1667999139),
                 read = ReadStatus.READ,
                 status = DeliveryStatus.DELIVERED,
-                type = MessageType.AUTO,
+                type = MessageType.SYSTEM,
                 text = "System message"
+            ),
+            Message(
+                id = "7",
+                date = Instant.fromEpochSeconds(1667999139),
+                read = ReadStatus.READ,
+                status = DeliveryStatus.DELIVERED,
+                type = MessageType.AUTO,
+                text = "Auto menu answer"
             ),
         )
 
